@@ -8,27 +8,33 @@ from __future__ import annotations
 
 from typing import Any
 
+from homeassistant.components.diagnostics import async_redact_data
 from homeassistant.core import HomeAssistant
 
 from . import MarineWeatherConfigEntry
+from .const import CONF_LATITUDE, CONF_LONGITUDE
+
+# The coordinates default to the Home Assistant location, so they are usually
+# the user's home, and the unique ID is built from them. Diagnostics files get
+# pasted into public issues, so none of the three may appear in one.
+TO_REDACT = {CONF_LATITUDE, CONF_LONGITUDE, "unique_id"}
 
 
 async def async_get_config_entry_diagnostics(
     hass: HomeAssistant, entry: MarineWeatherConfigEntry
 ) -> dict[str, Any]:
-    """Return diagnostics for a config entry.
-
-    Latitude/longitude are not treated as sensitive for this integration
-    (no account, no API key, no personal data), so nothing is redacted.
-    """
+    """Return diagnostics for a config entry, with its location redacted."""
     coordinator = entry.runtime_data
 
     return {
-        "entry": {
-            "title": entry.title,
-            "unique_id": entry.unique_id,
-            "data": dict(entry.data),
-        },
+        "entry": async_redact_data(
+            {
+                "title": entry.title,
+                "unique_id": entry.unique_id,
+                "data": dict(entry.data),
+            },
+            TO_REDACT,
+        ),
         "coordinator": {
             "last_update_success": coordinator.last_update_success,
             "last_exception": repr(coordinator.last_exception)

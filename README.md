@@ -21,7 +21,6 @@ individual sensor entities:
 | Wave height | m |
 | Wave direction | ° (plus a compass-name sensor) |
 | Wave period | s |
-| Wave peak period | s |
 | Swell wave height | m |
 | Swell wave direction | ° (plus a compass-name sensor) |
 | Swell wave period | s |
@@ -29,9 +28,6 @@ individual sensor entities:
 | Secondary swell wave height | m |
 | Secondary swell wave direction | ° (plus a compass-name sensor) |
 | Secondary swell wave period | s |
-| Tertiary swell wave height | m |
-| Tertiary swell wave direction | ° (plus a compass-name sensor) |
-| Tertiary swell wave period | s |
 | Wind wave height | m |
 | Wind wave direction | ° |
 | Wind wave period | s |
@@ -66,12 +62,13 @@ Worked example for wave height — three API fields, one sensor:
 
 Not every variable is published in all three groups upstream:
 
-- **Wave, swell, and wind-wave height/direction/period** (11 sensors) get all
-  three — state, `forecast`, and `hourly_forecast`.
-- **Peak periods, secondary/tertiary swell, sea level, sea surface
-  temperature, ocean current, and invert barometer height** have no daily
-  max/dominant field in the API, so those sensors get state and
-  `hourly_forecast` only — no `forecast` attribute.
+- **Wave height/direction/period, plus swell and wind-wave
+  height/direction/period/peak period** (11 sensors) get all three — state,
+  `forecast`, and `hourly_forecast`.
+- **Secondary swell, sea level, sea surface temperature, ocean current, and
+  invert barometer height** have no daily max/dominant field in the API, so
+  those sensors get state and `hourly_forecast` only — no `forecast`
+  attribute.
 - **Compass-name sensors** (e.g. `wave_direction_name`) are derived locally
   from another sensor's current reading, not fetched from the API directly —
   they have no `forecast` or `hourly_forecast` attribute of their own.
@@ -144,24 +141,13 @@ described in [Surf quality entities](#surf-quality-entities) above.
 
 **Requires Home Assistant 2026.10.0 or later.**
 
-### Option A — HACS default store (once accepted)
-
-After this integration is accepted into the [default HACS store](SUBMISSION.md):
+### Option A — HACS
 
 1. Open **HACS → Integrations**.
 2. Search for **Open-Meteo Marine Weather** and install.
 3. Restart Home Assistant.
 
-### Option B — HACS custom repository (available now)
-
-Until default-store acceptance, add it as a custom repository:
-
-1. Open **HACS → Integrations → ⋮ → Custom repositories**.
-2. Add `https://github.com/cloudbr34k84/home-assistant-Open-Meteo-Marine-Weather` with category **Integration**.
-3. Search for **Open-Meteo Marine Weather** and install.
-4. Restart Home Assistant.
-
-### Option C — Manual
+### Option B — Manual
 
 1. Copy `custom_components/open_meteo_marine_weather/` into your Home Assistant
    `config/custom_components/` directory.
@@ -216,10 +202,11 @@ sensors recover automatically once the API responds.
 **Diagnosing a specific location**
 Download diagnostics from the device page (**Settings → Devices & Services →
 Open-Meteo Marine Weather → (location) → ⋮ → Download diagnostics**). The
-file includes the coordinator's last update status, the configured
-coordinates, and the full last-fetched API payload — useful for confirming
-whether a persistent `unknown` sensor is a genuine data gap upstream or a
-local polling failure.
+file includes the coordinator's last update status and the full last-fetched
+API payload — useful for confirming whether a persistent `unknown` sensor is
+a genuine data gap upstream or a local polling failure. The location's
+latitude, longitude, and unique ID (which is built from them) are redacted,
+so the file is safe to attach to a public issue.
 
 ## Recovery
 
