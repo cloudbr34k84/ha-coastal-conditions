@@ -1,4 +1,6 @@
-![HA Coastal Conditions banner](ha-coastal-conditions_banner.png)
+<p align="center">
+  <img src="Coastal%20Conditions%20Home%20Assistant%20Banner.png" alt="HA Coastal Conditions banner" width="100%">
+</p>
 
 # HA Coastal Conditions
 
