@@ -1,4 +1,4 @@
-# Open-Meteo Marine Weather
+# HA Coastal Conditions
 
 Marine weather conditions from the free [Open-Meteo Marine API](https://marine-api.open-meteo.com/v1/marine) — wave, swell, and wind-wave height, direction, and period, plus a 7-day and 24-hour forecast. No API key required.
 
@@ -19,12 +19,12 @@ Marine weather conditions from the free [Open-Meteo Marine API](https://marine-a
 
 ## Configuration
 
-1. **Settings → Devices & Services → + Add Integration** → search **Open-Meteo Marine Weather**
+1. **Settings → Devices & Services → + Add Integration** → search **HA Coastal Conditions**
 2. Enter a name and coordinates (defaults to your Home Assistant location)
 3. Choose which sensors to add from the live preview
 
 Repeat for each additional location.
 
-For full details, troubleshooting, and forecast attribute examples, see the [README](https://github.com/cloudbr34k84/home-assistant-Open-Meteo-Marine-Weather).
+For full details, troubleshooting, and forecast attribute examples, see the [README](https://github.com/cloudbr34k84/ha-coastal-conditions).
 
 ---

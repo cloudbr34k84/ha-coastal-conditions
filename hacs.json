@@ -1,5 +1,5 @@
 {
-  "name": "Open-Meteo Marine Weather",
-  "render_readme": true,
-  "homeassistant": "2026.10.0"
+  "name": "HA Coastal Conditions",
+  "homeassistant": "2026.10.0",
+  "content_in_root": false
 }

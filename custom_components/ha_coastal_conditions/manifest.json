@@ -1,0 +1,15 @@
+{
+  "domain": "ha_coastal_conditions",
+  "name": "HA Coastal Conditions",
+  "codeowners": [
+    "@cloudbr34k84"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/cloudbr34k84/ha-coastal-conditions",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/cloudbr34k84/ha-coastal-conditions/issues",
+  "quality_scale": "bronze",
+  "requirements": [],
+  "version": "3.0.0"
+}
