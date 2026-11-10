@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.0.1 - 2026-11-10
+
+### Fixed
+
+- Replace integration icons and logos with the supplied HA Coastal Conditions artwork, including standard and high-resolution assets with transparency.
+- Use the current Coastal Conditions banner at the top of the README.
+
+Existing `ha_coastal_conditions` configurations and entity IDs are unchanged. Requires Home Assistant 2026.10.0 or newer.
+
 ## 3.0.0 - 2026-11-10
 
 ### Changed
